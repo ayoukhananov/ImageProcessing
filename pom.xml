@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.github.ayoukhananov</groupId>
+  <artifactId>imageprocessing</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <ob1k.version>0.198</ob1k.version>
+    <ob1k.groupId>com.outbrain.swinfra</ob1k.groupId>
+    <java.compiler.source>1.8</java.compiler.source>
+    <java.compiler.target>${java.compiler.source}</java.compiler.target>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>bintray-outbrain-OutbrainOSS</id>
+      <name>bintray</name>
+      <url>https://dl.bintray.com/outbrain/OutbrainOSS</url>
+    </repository>
+  </repositories>
+
+  <profiles>
+    <profile>
+      <id>JDK 8 Build</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <!-- without this the build fails due to these self closing HTML elements which are not not allowed in Java 8 javadocs -->
+        <additionalparam>-Xdoclint:none</additionalparam>
+      </properties>
+    </profile>
+  </profiles>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>${java.compiler.source}</source>
+          <target>${java.compiler.target}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>${ob1k.groupId}</groupId>
+      <artifactId>ob1k-core</artifactId>
+      <version>${ob1k.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${ob1k.groupId}</groupId>
+      <artifactId>ob1k-spring</artifactId>
+      <version>${ob1k.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${ob1k.groupId}</groupId>
+      <artifactId>ob1k-swagger</artifactId>
+      <version>${ob1k.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.imgscalr</groupId>
+      <artifactId>imgscalr-lib</artifactId>
+      <version>4.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+  </dependencies>
+
+</project>
