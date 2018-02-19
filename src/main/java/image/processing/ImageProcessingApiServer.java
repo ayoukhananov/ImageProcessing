@@ -20,7 +20,8 @@ public final class ImageProcessingApiServer {
 
   private static final String CONTEXT_PATH = "/imageProcessing";
   private static final Logger LOGGER = LoggerFactory.getLogger(ImageProcessingApiServer.class);
-  public static final int REQUEST_TIMEOUT = 5000;
+  private static final int REQUEST_TIMEOUT = 5000;
+  private static final int PORT = 4646;
 
   private ImageProcessingApiServer() {
   }
@@ -39,7 +40,7 @@ public final class ImageProcessingApiServer {
 
     return SpringContextServerBuilder.newBuilder(ctx).
       contextPath(CONTEXT_PATH).
-      configure(builder -> builder.usePort(4646)
+      configure(builder -> builder.usePort(PORT)
         .requestTimeout(REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
 //        .configureExecutorService(10, 200)
 //        .acceptKeepAlive(true)
